@@ -7,7 +7,9 @@ export const Route = createFileRoute("/api/contact")({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        const accessKey = process.env.WEB3FORMS_ACCESS_KEY;
+        const accessKey =
+          process.env.NITRO_WEB3FORMS_ACCESS_KEY ??
+          process.env.WEB3FORMS_ACCESS_KEY;
 
         if (!accessKey) {
           return Response.json(
