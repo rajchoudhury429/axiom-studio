@@ -20,7 +20,7 @@ function Globe() {
   return (
     <div className="relative aspect-square w-full max-w-md mx-auto">
       <div className="absolute inset-0 rounded-full glass-red animate-pulse-glow" />
-      <div className="absolute inset-4 rounded-full border border-[oklch(0.55_0.22_25/40%)] overflow-hidden">
+      <div className="absolute inset-4 rounded-full border border-crimson/40 overflow-hidden">
         <svg viewBox="0 0 100 100" className="h-full w-full animate-spin-slow">
           {Array.from({ length: 12 }).map((_, i) => (
             <ellipse
@@ -30,7 +30,8 @@ function Globe() {
               rx="48"
               ry={4 + i * 4}
               fill="none"
-              stroke="oklch(0.55 0.22 25 / 25%)"
+              stroke="var(--crimson)"
+              strokeOpacity="0.25"
               strokeWidth="0.2"
             />
           ))}
@@ -42,7 +43,8 @@ function Globe() {
               ry="48"
               rx={4 + i * 4}
               fill="none"
-              stroke="oklch(0.55 0.22 25 / 15%)"
+              stroke="var(--crimson)"
+              strokeOpacity="0.15"
               strokeWidth="0.2"
             />
           ))}
@@ -57,10 +59,11 @@ function Globe() {
       ].map(([x, y], i) => (
         <div
           key={i}
-          className="absolute h-2 w-2 rounded-full bg-[oklch(0.75_0.22_25)] shadow-[0_0_10px_oklch(0.75_0.22_25)]"
+          className="absolute h-2 w-2 rounded-full bg-crimson-soft"
           style={{
             left: `${x}%`,
             top: `${y}%`,
+            boxShadow: "0 0 10px var(--crimson-soft)",
             animation: `float-slow ${3 + i}s ease-in-out infinite`,
           }}
         />
@@ -132,7 +135,7 @@ function Contact() {
                   <input
                     name="name"
                     required
-                    className="w-full rounded-lg bg-black/40 border border-white/10 px-4 py-3 text-sm outline-none focus:border-[oklch(0.55_0.22_25/60%)]"
+                    className="w-full rounded-lg bg-input border-border px-4 py-3 text-sm outline-none focus:border-crimson/60"
                   />
                 </label>
                 <label className="block">
@@ -141,7 +144,7 @@ function Contact() {
                     name="email"
                     required
                     type="email"
-                    className="w-full rounded-lg bg-black/40 border border-white/10 px-4 py-3 text-sm outline-none focus:border-[oklch(0.55_0.22_25/60%)]"
+                    className="w-full rounded-lg bg-input border-border px-4 py-3 text-sm outline-none focus:border-crimson/60"
                   />
                 </label>
               </div>
@@ -149,7 +152,7 @@ function Contact() {
                 <div className="eyebrow mb-2">Subject</div>
                 <select
                   name="subject"
-                  className="w-full rounded-lg bg-black/40 border border-white/10 px-4 py-3 text-sm outline-none"
+                  className="w-full rounded-lg bg-input border-border px-4 py-3 text-sm outline-none"
                 >
                   <option>Engagement inquiry</option>
                   <option>Research collaboration</option>
@@ -163,7 +166,7 @@ function Contact() {
                   name="message"
                   required
                   rows={6}
-                  className="w-full rounded-lg bg-black/40 border border-white/10 px-4 py-3 text-sm outline-none focus:border-[oklch(0.55_0.22_25/60%)] resize-none"
+                  className="w-full rounded-lg bg-input border-border px-4 py-3 text-sm outline-none focus:border-crimson/60 resize-none"
                 />
               </label>
               {status === "error" && (
