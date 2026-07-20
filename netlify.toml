@@ -1,7 +1,7 @@
 [build]
   command = "npm run build"
-  publish = ".output/public"
-  functions = ".output/server"
+  publish = "dist"
+  functions = ".netlify/functions-internal/server"
 
 [dev]
   command = "npm run dev"
@@ -10,17 +10,9 @@
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/.netlify/functions/server/index"
   status = 200
   force = false
-  conditions = {Role = ["api"]}
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = true
-  conditions = {Language = ["en"], Country = ["us"]}
 
 [[headers]]
   for = "/*"
