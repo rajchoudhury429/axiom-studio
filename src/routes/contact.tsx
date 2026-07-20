@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { PageShell, Eyebrow } from "@/components/site";
 import { toast } from "sonner";
 
@@ -16,6 +16,9 @@ export const Route = createFileRoute("/contact")({
   }),
   component: Contact,
 });
+
+const WEB3FORMS_ACCESS_KEY = "48be367c-789b-4f7e-a4fd-39668dec8b10";
+const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
 function Globe() {
   return (
@@ -109,22 +112,21 @@ function Contact() {
     }
 
     const currentId = ++submissionIdRef.current;
-
     setStatus("sending");
     setErrorMsg("");
 
     const form = e.currentTarget;
-    const data = new FormData(form);
-    const payload = Object.fromEntries(data.entries());
+    const formData = new FormData(form);
+    formData.append("access_key", WEB3FORMS_ACCESS_KEY);
+    formData.append("botcheck", "");
 
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 15_000);
 
-      const res = await fetch("/api/contact", {
+      const res = await fetch(WEB3FORMS_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: formData,
         signal: controller.signal,
       });
 
@@ -132,9 +134,9 @@ function Contact() {
 
       if (currentId !== submissionIdRef.current) return;
 
-      const result = await res.json();
+      const data = await res.json();
 
-      if (result.success) {
+      if (data.success) {
         setSent(true);
         form.reset();
         setSubject("Engagement inquiry");
@@ -143,14 +145,10 @@ function Contact() {
         );
       } else {
         setStatus("error");
-        setErrorMsg(
-          result.message ?? "Something went wrong. Please try again.",
-        );
-        toast.error(
-          result.message ?? "Something went wrong. Please try again.",
-        );
+        setErrorMsg(data.message ?? "Something went wrong. Please try again.");
+        toast.error(data.message ?? "Something went wrong. Please try again.");
       }
-    } catch {
+    } catch (err) {
       if (currentId !== submissionIdRef.current) return;
       setStatus("error");
       setErrorMsg("Network error. Please check your connection and try again.");
