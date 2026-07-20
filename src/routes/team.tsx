@@ -3,10 +3,12 @@ import { useState } from "react";
 import { PageShell, Eyebrow } from "@/components/site";
 
 export const Route = createFileRoute("/team")({
-  head: () => ({ meta: [
-    { title: "Team — AXIOM Studio" },
-    { name: "description", content: "Meet the five engineers behind AXIOM: Raj, Daniyal, Jigyashu, Banajit, and Abhijeet." },
-  ]}),
+  head: () => ({
+    meta: [
+      { title: "Team — AXIOM Studio" },
+      { name: "description", content: "Meet the five engineers behind AXIOM: Raj, Daniyal, Jigyashu, Banajit, and Abhijeet." },
+    ]
+  }),
   component: Team,
 });
 
@@ -16,7 +18,7 @@ const MEMBERS = [
     bio: "Systems architect and de-facto captain. Decides where the current runs.",
     skills: ["Distributed systems", "Model routing", "Rust", "Node", "K8s"],
     projects: ["AXIOM Core", "Router v2", "Ledger"],
-    stats: [["7y", "Experience"], ["12", "Systems shipped"], ["24", "Papers read/mo"]],
+    stats: [["5y", "Experience"], ["12", "Systems shipped"], ["24", "Papers read/mo"]],
   },
   {
     name: "Daniyal", role: "Backend Engineer", tags: ["Backend", "API", "Server Logic"],
@@ -56,7 +58,7 @@ function Team() {
       <section className="mx-auto max-w-7xl px-6 pt-8 pb-6">
         <Eyebrow>The Five</Eyebrow>
         <h1 className="hero-title mt-6 text-[clamp(2.4rem,6vw,5.4rem)]">
-          Five engineers.<br/><span className="text-shine">One current.</span>
+          Five engineers.<br /><span className="text-shine">One current.</span>
         </h1>
       </section>
 
@@ -67,15 +69,14 @@ function Team() {
               <li key={mm.name}>
                 <button
                   onClick={() => setActive(i)}
-                  className={`w-full text-left rounded-2xl border p-4 transition ${
-                    i === active
-                      ? "border-[oklch(0.55_0.22_25/50%)] bg-[oklch(0.55_0.22_25/8%)]"
-                      : "border-white/5 bg-white/[0.02] hover:bg-white/[0.04]"
-                  }`}
+                  className={`w-full text-left rounded-2xl border p-4 transition ${i === active
+                    ? "border-[oklch(0.55_0.22_25/50%)] bg-[oklch(0.55_0.22_25/8%)]"
+                    : "border-white/5 bg-white/[0.02] hover:bg-white/[0.04]"
+                    }`}
                 >
                   <div className="flex items-center gap-3">
-                    <div className={`h-10 w-10 rounded-full flex items-center justify-center font-display font-semibold ${i===active ? "glass-red" : "bg-white/5"}`}>
-                      {mm.name.split(" ").map(s=>s[0]).join("").slice(0,2)}
+                    <div className={`h-10 w-10 rounded-full flex items-center justify-center font-display font-semibold ${i === active ? "glass-red" : "bg-white/5"}`}>
+                      {mm.name.split(" ").map(s => s[0]).join("").slice(0, 2)}
                     </div>
                     <div>
                       <div className="text-sm font-medium">{mm.name}</div>
@@ -100,7 +101,7 @@ function Team() {
               </div>
               <div className="relative">
                 <div className="h-24 w-24 rounded-2xl bg-gradient-to-br from-[oklch(0.7_0.24_25)] to-[oklch(0.2_0.1_20)] flex items-center justify-center font-display text-3xl font-bold animate-pulse-glow">
-                  {m.name.split(" ").map(s=>s[0]).join("").slice(0,2)}
+                  {m.name.split(" ").map(s => s[0]).join("").slice(0, 2)}
                 </div>
               </div>
             </div>
