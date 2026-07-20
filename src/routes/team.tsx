@@ -23,28 +23,28 @@ const MEMBERS = [
     bio: "Writes servers that don't wake you up at 3am. Believes latency is a moral issue.",
     skills: ["Node", "Postgres", "Redis", "Go", "gRPC"],
     projects: ["API Gateway", "Auth service", "Rate shield"],
-    stats: [["5y", "Experience"], ["99.98%", "Uptime"], ["18ms", "p50"]],
+    stats: [["1y", "Experience"], ["99.98%", "Uptime"], ["18ms", "p50"]],
   },
   {
     name: "Jigyashu", role: "Frontend Engineer", tags: ["Frontend", "UI", "Animation"],
     bio: "Draws with code. Motion belongs where meaning lives — nowhere else.",
     skills: ["React", "Three.js", "GSAP", "Motion", "WebGL"],
     projects: ["AXIOM UI", "Motion kit", "3D lab"],
-    stats: [["4y", "Experience"], ["60fps", "Standard"], ["21", "Shipped surfaces"]],
+    stats: [["1y", "Experience"], ["60fps", "Standard"], ["21", "Shipped surfaces"]],
   },
   {
     name: "Banajit", role: "Frontend Engineer", tags: ["Frontend", "UX", "Interactive Design"],
     bio: "Interaction designer. Asks 'why' before 'how'. Prototypes in the browser.",
     skills: ["React", "Design systems", "Figma", "Accessibility", "Prototyping"],
     projects: ["Design tokens", "UX Lab", "Studio site"],
-    stats: [["4y", "Experience"], ["100%", "a11y target"], ["14", "Design systems"]],
+    stats: [["1y", "Experience"], ["100%", "a11y target"], ["14", "Design systems"]],
   },
   {
     name: "Abhijeet", role: "QA & Planning", tags: ["Planning", "QA", "Testing", "Docs"],
     bio: "Runs the plan. Breaks the software. Writes the manual nobody else will.",
     skills: ["Playwright", "Vitest", "Roadmapping", "Docs", "Release"],
     projects: ["Test harness", "Release train", "Docs portal"],
-    stats: [["5y", "Experience"], ["1,240", "Tests"], ["0", "Missed releases"]],
+    stats: [["1y", "Experience"], ["1,240", "Tests"], ["0", "Missed releases"]],
   },
 ];
 
