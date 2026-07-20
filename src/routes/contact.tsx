@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { PageShell, Eyebrow } from "@/components/site";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -76,31 +77,84 @@ function Contact() {
   const [sent, setSent] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [subject, setSubject] = useState("Engagement inquiry");
+  const submissionIdRef = useRef(0);
+
+  function validateForm(form: HTMLFormElement): string | null {
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+
+    if (!name) return "Name is required.";
+    if (name.length < 2) return "Name must be at least 2 characters.";
+    if (!email) return "Email is required.";
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) return "Please enter a valid email address.";
+    if (!message) return "Message is required.";
+    if (message.length < 10) return "Message must be at least 10 characters.";
+    if (message.length > 5000) return "Message must be under 5000 characters.";
+
+    return null;
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    const validationError = validateForm(e.currentTarget);
+    if (validationError) {
+      toast.error(validationError);
+      setStatus("error");
+      setErrorMsg(validationError);
+      return;
+    }
+
+    const currentId = ++submissionIdRef.current;
+
     setStatus("sending");
     setErrorMsg("");
+
     const form = e.currentTarget;
-    const data = Object.fromEntries(new FormData(form).entries());
+    const data = new FormData(form);
+    const payload = Object.fromEntries(data.entries());
+
     try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15_000);
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
+        signal: controller.signal,
       });
+
+      clearTimeout(timeoutId);
+
+      if (currentId !== submissionIdRef.current) return;
+
       const result = await res.json();
+
       if (result.success) {
         setSent(true);
+        form.reset();
+        setSubject("Engagement inquiry");
+        toast.success(
+          "Message sent successfully. We'll reply within 48 hours.",
+        );
       } else {
         setStatus("error");
         setErrorMsg(
           result.message ?? "Something went wrong. Please try again.",
         );
+        toast.error(
+          result.message ?? "Something went wrong. Please try again.",
+        );
       }
     } catch {
+      if (currentId !== submissionIdRef.current) return;
       setStatus("error");
-      setErrorMsg("Network error. Please try again.");
+      setErrorMsg("Network error. Please check your connection and try again.");
+      toast.error("Network error. Please check your connection and try again.");
     }
   }
 
@@ -126,6 +180,17 @@ function Contact() {
               <p className="mt-2 text-sm text-muted-foreground">
                 We reply to every real message, usually within 48 hours.
               </p>
+              <button
+                type="button"
+                onClick={() => {
+                  setSent(false);
+                  setStatus("idle");
+                  setErrorMsg("");
+                }}
+                className="mt-6 rounded-lg border border-border bg-secondary/80 px-5 py-2 text-sm font-medium hover:bg-secondary transition"
+              >
+                Send another message
+              </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -135,6 +200,7 @@ function Contact() {
                   <input
                     name="name"
                     required
+                    autoComplete="name"
                     className="w-full rounded-lg bg-input border-border px-4 py-3 text-sm outline-none focus:border-crimson/60"
                   />
                 </label>
@@ -144,6 +210,7 @@ function Contact() {
                     name="email"
                     required
                     type="email"
+                    autoComplete="email"
                     className="w-full rounded-lg bg-input border-border px-4 py-3 text-sm outline-none focus:border-crimson/60"
                   />
                 </label>
@@ -152,6 +219,8 @@ function Contact() {
                 <div className="eyebrow mb-2">Subject</div>
                 <select
                   name="subject"
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
                   className="w-full rounded-lg bg-input border-border px-4 py-3 text-sm outline-none"
                 >
                   <option>Engagement inquiry</option>
@@ -166,10 +235,19 @@ function Contact() {
                   name="message"
                   required
                   rows={6}
+                  maxLength={5000}
                   className="w-full rounded-lg bg-input border-border px-4 py-3 text-sm outline-none focus:border-crimson/60 resize-none"
                 />
               </label>
-              {status === "error" && (
+              <input
+                type="text"
+                name="botcheck"
+                tabIndex={-1}
+                autoComplete="off"
+                className="hidden"
+                aria-hidden="true"
+              />
+              {status === "error" && errorMsg && (
                 <p className="text-sm text-destructive">{errorMsg}</p>
               )}
               <button

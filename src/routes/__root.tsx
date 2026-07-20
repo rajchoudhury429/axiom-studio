@@ -14,6 +14,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ThemeProvider } from "../contexts/theme-context";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -147,6 +148,7 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body>
         <ThemeProvider>{children}</ThemeProvider>
+        <Toaster />
         <Scripts />
       </body>
     </html>
