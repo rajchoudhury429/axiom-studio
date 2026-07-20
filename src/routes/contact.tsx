@@ -17,7 +17,7 @@ export const Route = createFileRoute("/contact")({
   component: Contact,
 });
 
-const WEB3FORMS_ACCESS_KEY = "48be367c-789b-4f7e-a4fd-39668dec8b10";
+const WEB3FORMS_ACCESS_KEY = "b0ed214b-707e-4197-a1ae-eaf7a735610c";
 const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
 function Globe() {
