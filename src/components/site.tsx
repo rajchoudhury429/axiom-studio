@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { AIChat } from "@/components/ai-chat";
 
 export function Eyebrow({
   children,
@@ -236,6 +237,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </footer>
+      <AIChat />
     </div>
   );
 }
