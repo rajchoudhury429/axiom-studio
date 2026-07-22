@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChatButton } from "@/components/ai-chat-button";
 import { ChatWindow } from "@/components/ai-chat-window";
@@ -10,6 +10,7 @@ import { createMessage } from "@/lib/ai-service";
 export function AIChat() {
   const [isOpen, setIsOpen] = useState(false);
   const [isStreaming, setIsStreaming] = useState(false);
+  const chatButtonRef = useRef<HTMLButtonElement>(null);
   const { messages, isLoaded, addMessage, updateLastMessage, clearHistory } =
     useChatHistory();
 
@@ -50,11 +51,16 @@ export function AIChat() {
               isStreaming={isStreaming}
               setIsStreaming={setIsStreaming}
               updateLastMessage={updateLastMessage}
+              triggerRef={chatButtonRef}
             />
           </motion.div>
         )}
       </AnimatePresence>
-      <ChatButton onClick={() => setIsOpen(true)} isOpen={isOpen} />
+      <ChatButton
+        ref={chatButtonRef}
+        onClick={() => setIsOpen(true)}
+        isOpen={isOpen}
+      />
     </>
   );
 }

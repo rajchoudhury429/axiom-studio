@@ -50,6 +50,14 @@ export function PageShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground relative">
+      {/* Skip link for accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:text-sm focus:font-medium"
+      >
+        Skip to main content
+      </a>
+
       {/* Header */}
       <header
         className={cn(
@@ -63,6 +71,8 @@ export function PageShell({ children }: { children: React.ReactNode }) {
           <svg
             className="h-8 w-8 transition-transform group-hover:scale-105 duration-300"
             viewBox="0 0 120 120"
+            role="img"
+            aria-label="AXIOM-AI WORKSPACE logo"
           >
             <g
               stroke="var(--crimson)"
@@ -87,7 +97,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
               AXIOM
             </span>
             <span className="text-[9px] font-mono tracking-widest text-[var(--eyebrow-color)] mt-0.5 leading-none">
-              STUDIO
+              WORKSPACE
             </span>
           </div>
         </Link>
@@ -195,13 +205,20 @@ export function PageShell({ children }: { children: React.ReactNode }) {
       </div>
 
       {/* Main Content */}
-      <main className="flex-grow pt-24 pb-16 relative z-10">{children}</main>
+      <main id="main-content" className="flex-grow pt-24 pb-16 relative z-10">
+        {children}
+      </main>
 
       {/* Footer */}
       <footer className="border-t border-border/40 py-8 px-6 relative z-10 bg-background/50 backdrop-blur-sm">
         <div className="mx-auto max-w-7xl flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <svg className="h-6 w-6 opacity-60" viewBox="0 0 120 120">
+            <svg
+              className="h-6 w-6 opacity-60"
+              viewBox="0 0 120 120"
+              role="img"
+              aria-label="AXIOM-AI WORKSPACE logo"
+            >
               <g
                 stroke="var(--crimson)"
                 strokeWidth="8"
@@ -221,7 +238,7 @@ export function PageShell({ children }: { children: React.ReactNode }) {
               </g>
             </svg>
             <div className="text-xs text-muted-foreground font-mono">
-              © {new Date().getFullYear()} AXIOM STUDIO. ALL RIGHTS RESERVED.
+              © {new Date().getFullYear()} AXIOM-AI WORKSPACE. ALL RIGHTS RESERVED.
             </div>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-6">

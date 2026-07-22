@@ -18,7 +18,7 @@ MISSION:
 Building the interface between humans and machine intelligence — a unified AI surface that reasons, routes, and remembers.
 
 MAIN PRODUCTS:
-1. AXIOM v1 (2025, Live) — Multi-model reasoning surface with model routing, persistent memory, and provider-agnostic orchestration. Edge gateway → intent classifier → routing plane → provider adapters → memory ledger. Uses Gemini, Claude, DeepSeek, and OpenRouter.
+1. AXIOM v1 (2026, Live) — Multi-model reasoning surface with model routing, persistent memory, and provider-agnostic orchestration. Edge gateway → intent classifier → routing plane → provider adapters → memory ledger. Uses Gemini, Claude, DeepSeek, and OpenRouter.
 2. Ledger (2026, Beta) — Durable memory for conversational agents. Per-user memory store with typed episodic and semantic layers, retrievable across agents. Built with Postgres, pgvector, Redis, and Go.
 3. AXIOM UI — Design system and component library.
 4. Motion kit — Animation utilities and micro-interactions.
@@ -37,15 +37,15 @@ KEY RESEARCH AREAS:
 - The one-good-answer axiom (users want one good answer, not completions)
 
 WEBSITE STRUCTURE:
-- Home: Hero, AI Core visualization, mission statement
-- About: The Doctrine — history, timeline, philosophy
-- Team: Five engineers with bios, skills, stats
-- Projects: AXIOM v1, Ledger, and forward research
-- Skills: Interactive skill constellation
-- Technology: Tech stack with rationale
+- Home: Hero, AI Core visualization, mission statement, featured system, CTA
+- About: The Doctrine — history, timeline, philosophy, how we think, what drives us
+- Team: Five engineers with bios, skills, stats, collaboration approach
+- Projects: AXIOM v1, Ledger, Router v2 with detailed breakdowns
+- Skills: Interactive skill constellation grouped by discipline
+- Technology: Tech stack with rationale for each choice
 - Research: Architecture notes, AI routing diagrams, open questions
 - Journey: Roadmap with done/active/next milestones
-- Docs: Documentation and guides
+- Docs: Documentation hub with architecture, API, modules, structure, future plans, contribution guide
 - Contact: Contact form with email, GitHub, LinkedIn, Instagram
 
 DESIGN AESTHETIC:

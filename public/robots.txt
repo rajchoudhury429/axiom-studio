@@ -1,2 +1,13 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+
+Sitemap: https://axiom.studio/sitemap.xml
+
+# Crawl-delay is ignored by Google but respected by some bots
+Crawl-delay: 0
+
+# Block access to common sensitive paths
+Disallow: /_vite/
+Disallow: /__start/
+Disallow: /.git/

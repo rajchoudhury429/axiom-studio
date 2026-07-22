@@ -1,0 +1,117 @@
+import { n as require_jsx_runtime } from "../_libs/react+tanstack__react-query.mjs";
+import { n as PageShell, t as Eyebrow } from "./site-CltB6ejn.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/journey-DLh8ktll.js
+var import_jsx_runtime = require_jsx_runtime();
+var STAGES = [
+	{
+		phase: "Phase 00",
+		title: "Planning",
+		body: "Field research, interviews, and a five-page thesis nobody has read since.",
+		state: "done"
+	},
+	{
+		phase: "Phase 01",
+		title: "Research",
+		body: "Model surveys, latency benchmarks, memory typology. We took notes.",
+		state: "done"
+	},
+	{
+		phase: "Phase 02",
+		title: "Development",
+		body: "AXIOM v1 hand-built from the routing layer up. First provider adapters online.",
+		state: "done"
+	},
+	{
+		phase: "Phase 03",
+		title: "Testing",
+		body: "1,240 tests, four release rehearsals, one production incident (unrelated).",
+		state: "done"
+	},
+	{
+		phase: "Phase 04",
+		title: "AXIOM v1",
+		body: "Public release. Persistent memory, model routing, agent surfaces.",
+		state: "done"
+	},
+	{
+		phase: "Phase 05",
+		title: "AXIOM v2",
+		body: "Distributed agents, embedded reasoning, human-in-the-loop by default.",
+		state: "active"
+	},
+	{
+		phase: "Phase 06",
+		title: "AXIOM v3",
+		body: "Reasoning contracts. Auditable decision trails. Multi-tenant memory.",
+		state: "next"
+	},
+	{
+		phase: "Phase 07",
+		title: "Future",
+		body: "The interface disappears. Intent stays.",
+		state: "future"
+	}
+];
+function Journey() {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(PageShell, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+		className: "mx-auto max-w-6xl px-6 pt-8 pb-8",
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Eyebrow, { children: "Roadmap" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h1", {
+			className: "hero-title mt-6 text-[clamp(2.4rem,6vw,5.4rem)]",
+			children: [
+				"The line between",
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("br", {}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+					className: "text-shine",
+					children: "then and next."
+				})
+			]
+		})]
+	}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
+		className: "mx-auto max-w-6xl px-6 py-12",
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+			className: "relative",
+			children: STAGES.map((s, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "relative grid grid-cols-[80px_1fr] md:grid-cols-[120px_1fr_1fr] gap-6 pb-12 animate-rise",
+				style: { animationDelay: `${i * .06}s` },
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "relative",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: `relative z-10 h-6 w-6 rounded-full border-2 ${s.state === "done" ? "bg-crimson border-crimson-soft" : s.state === "active" ? "bg-white border-crimson-soft animate-pulse-glow" : "bg-transparent border-border"}` }),
+							i < STAGES.length - 1 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute left-3 top-6 bottom-[-48px] w-px bg-gradient-to-b from-crimson/60 to-border" }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+								className: "eyebrow mt-3 text-[9px]",
+								children: s.phase
+							})
+						]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "md:col-span-1",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: `font-display text-3xl md:text-4xl font-semibold ${s.state === "future" ? "text-muted-foreground" : ""}`,
+							children: s.title
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: "mt-2 text-xs font-mono uppercase tracking-widest",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: s.state === "done" ? "text-emerald-400" : s.state === "active" ? "text-crimson-soft" : s.state === "next" ? "text-amber-300" : "text-muted-foreground",
+								children: s.state
+							})
+						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+						className: "col-span-2 md:col-span-1",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: `rounded-2xl p-5 ${s.state === "active" ? "glass-red" : "glass"}`,
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+								className: "text-sm text-muted-foreground leading-relaxed",
+								children: s.body
+							})
+						})
+					})
+				]
+			}, s.phase))
+		})
+	})] });
+}
+//#endregion
+export { Journey as component };

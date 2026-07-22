@@ -81,29 +81,60 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       meta: [
         { charSet: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
-        { title: "AXIOM Studio — Engineering Intelligence" },
+        { title: "AXIOM-AI WORKSPACE — Engineering Intelligence" },
         {
           name: "description",
           content:
-            "AXIOM Studio is an independent research collective building the interface between humans and machine intelligence.",
+            "AXIOM-AI WORKSPACE is an independent AI engineering collective building the interface between humans and machine intelligence.",
         },
-        { name: "author", content: "AXIOM Studio" },
+        { name: "author", content: "AXIOM-AI WORKSPACE" },
         { name: "theme-color", content: "#0a0203" },
+        { name: "color-scheme", content: "dark light" },
+        { name: "robots", content: "index, follow" },
+        { name: "googlebot", content: "index, follow" },
         {
           property: "og:title",
-          content: "AXIOM Studio — Engineering Intelligence",
+          content: "AXIOM-AI WORKSPACE — Engineering Intelligence",
         },
         {
           property: "og:description",
           content:
-            "Independent research collective building next-generation AI systems.",
+            "Independent AI engineering collective building next-generation AI systems.",
         },
         { property: "og:type", content: "website" },
+        { property: "og:url", content: "https://axiom.studio" },
+        { property: "og:image", content: "https://axiom.studio/og-image.png" },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        {
+          property: "og:image:alt",
+          content: "AXIOM-AI WORKSPACE — Engineering Intelligence",
+        },
+        { property: "og:site_name", content: "AXIOM-AI WORKSPACE" },
+        { property: "og:locale", content: "en_US" },
         { name: "twitter:card", content: "summary_large_image" },
+        {
+          name: "twitter:title",
+          content: "AXIOM-AI WORKSPACE — Engineering Intelligence",
+        },
+        {
+          name: "twitter:description",
+          content:
+            "Independent AI engineering collective building next-generation AI systems.",
+        },
+        { name: "twitter:image", content: "https://axiom.studio/og-image.png" },
+        {
+          name: "twitter:image:alt",
+          content: "AXIOM-AI WORKSPACE — Engineering Intelligence",
+        },
       ],
       links: [
         { rel: "stylesheet", href: appCss },
         { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+        { rel: "icon", href: "/favicon.ico", sizes: "any" },
+        { rel: "apple-touch-icon", href: "/favicon.ico" },
+        { rel: "manifest", href: "/manifest.json" },
+        { rel: "canonical", href: "https://axiom.studio" },
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
         {
           rel: "preconnect",
@@ -113,6 +144,50 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         {
           rel: "stylesheet",
           href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap",
+        },
+      ],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "AXIOM-AI WORKSPACE",
+            url: "https://axiom.studio",
+            description:
+              "AXIOM-AI WORKSPACE is an independent AI engineering collective building the interface between humans and machine intelligence.",
+            foundingDate: "2026",
+            sameAs: [
+              "https://github.com/axiom-studio",
+              "https://linkedin.com/company/axiom",
+              "https://instagram.com/axiom.studio",
+            ],
+            contactPoint: {
+              "@type": "ContactPoint",
+              email: "hello@axiom.studio",
+              contactType: "customer service",
+            },
+          }),
+        },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "AXIOM-AI WORKSPACE",
+            url: "https://axiom.studio",
+            description:
+              "AXIOM-AI WORKSPACE is an independent AI engineering collective building the interface between humans and machine intelligence.",
+            inLanguage: "en-US",
+            potentialAction: {
+              "@type": "SearchAction",
+              target: {
+                "@type": "EntryPoint",
+                urlTemplate: "https://axiom.studio/?s={search_term_string}",
+              },
+              "query-input": "required name=search_term_string",
+            },
+          }),
         },
       ],
     }),

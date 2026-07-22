@@ -18,6 +18,7 @@ interface ChatWindowProps {
   isStreaming: boolean;
   setIsStreaming: (streaming: boolean) => void;
   updateLastMessage: (content: string) => void;
+  triggerRef: React.RefObject<HTMLButtonElement | null>;
 }
 
 export function ChatWindow({
@@ -29,12 +30,14 @@ export function ChatWindow({
   isStreaming,
   setIsStreaming,
   updateLastMessage,
+  triggerRef,
 }: ChatWindowProps) {
   const [input, setInput] = useState("");
   const [error, setError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -43,6 +46,45 @@ export function ChatWindow({
   useEffect(() => {
     scrollToBottom();
   }, [messages, scrollToBottom]);
+
+  useEffect(() => {
+    if (isOpen) return;
+    triggerRef.current?.focus();
+  }, [isOpen, triggerRef]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const container = containerRef.current;
+    if (!container) return;
+
+    const focusable = container.querySelectorAll<HTMLElement>(
+      'button, [href], input, textarea, select, [tabindex]:not([tabindex="-1"])',
+    );
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    function handleTab(e: KeyboardEvent) {
+      if (e.key !== "Tab") return;
+      if (focusable.length === 0) return;
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
+    }
+
+    container.addEventListener("keydown", handleTab);
+    first?.focus();
+    return () => {
+      container.removeEventListener("keydown", handleTab);
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     return () => {
@@ -64,19 +106,24 @@ export function ChatWindow({
     }
 
     abortControllerRef.current = new AbortController();
+    let accumulated = "";
 
     try {
       setIsStreaming(true);
+
+      const validMessages = messages
+        .filter((m) => m && m.content && m.content.trim() !== "")
+        .map((m) => ({
+          role: m.role,
+          content: m.content,
+        }));
 
       const res = await fetch(API_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           messages: [
-            ...messages.map((m) => ({
-              role: m.role,
-              content: m.content,
-            })),
+            ...validMessages,
             { role: "user", content: trimmed },
           ],
         }),
@@ -96,7 +143,6 @@ export function ChatWindow({
       }
 
       const decoder = new TextDecoder();
-      let accumulated = "";
 
       while (true) {
         const { done, value } = await reader.read();
@@ -140,11 +186,15 @@ export function ChatWindow({
 
   return (
     <motion.div
+      ref={containerRef}
       initial={{ opacity: 0, scale: 0.95, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95, y: 20 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
       className="flex h-[600px] w-[380px] flex-col rounded-2xl border border-border bg-background/95 shadow-2xl backdrop-blur-xl md:h-[650px] md:w-[400px]"
+      role="dialog"
+      aria-modal="true"
+      aria-label="AXIOM AI Chat"
     >
       {/* Header */}
       <div className="flex items-center justify-between border-b border-border px-4 py-3">
@@ -175,7 +225,11 @@ export function ChatWindow({
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-3 py-3 space-y-3">
+      <div
+        aria-live="polite"
+        aria-atomic="false"
+        className="flex-1 overflow-y-auto px-3 py-3 space-y-3"
+      >
         <AnimatePresence>
           {messages.map((msg) => (
             <ChatMessage key={msg.id} message={msg} />

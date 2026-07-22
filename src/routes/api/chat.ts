@@ -8,11 +8,17 @@ export const Route = createFileRoute("/api/chat")({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        const apiKey = process.env.GROQ_API_KEY;
+        const apiKey =
+          process.env.GROQ_API_KEY ||
+          process.env.NITRO_GROQ_API_KEY ||
+          process.env.VITE_GROQ_API_KEY ||
+          (typeof import.meta !== "undefined" && import.meta.env
+            ? import.meta.env.VITE_GROQ_API_KEY || import.meta.env.GROQ_API_KEY
+            : undefined);
 
         if (!apiKey) {
           return Response.json(
-            { error: "AI service is not configured." },
+            { error: "AI service is not configured. Please set GROQ_API_KEY in environment." },
             { status: 500 },
           );
         }
@@ -34,11 +40,15 @@ export const Route = createFileRoute("/api/chat")({
           );
         }
 
+        const filteredMessages = payload.messages.filter(
+          (msg) => msg && typeof msg.content === "string" && msg.content.trim() !== ""
+        );
+
         const messages = [
           { role: "system", content: SYSTEM_PROMPT },
-          ...payload.messages.map((msg) => ({
+          ...filteredMessages.map((msg) => ({
             role: msg.role === "assistant" ? "assistant" : "user",
-            content: msg.content,
+            content: msg.content.trim(),
           })),
         ];
 
@@ -75,7 +85,7 @@ export const Route = createFileRoute("/api/chat")({
 
             if (res.status === 400) {
               return Response.json(
-                { error: "Invalid request. Please try again." },
+                { error: "Invalid request to AI provider." },
                 { status: 400 },
               );
             }
@@ -99,16 +109,33 @@ export const Route = createFileRoute("/api/chat")({
 
           const stream = new ReadableStream({
             async start(controller) {
+              let buffer = "";
               try {
                 while (true) {
                   const { done, value } = await reader.read();
                   if (done) {
+                    if (buffer.trim()) {
+                      const trimmed = buffer.trim();
+                      if (trimmed.startsWith("data:")) {
+                        const data = trimmed.slice(5).trim();
+                        if (data && data !== "[DONE]") {
+                          try {
+                            const parsed = JSON.parse(data);
+                            const content = parsed.choices?.[0]?.delta?.content;
+                            if (content) controller.enqueue(encoder.encode(content));
+                          } catch {
+                            // ignore partial trailing
+                          }
+                        }
+                      }
+                    }
                     controller.close();
                     break;
                   }
 
-                  const text = decoder.decode(value, { stream: true });
-                  const lines = text.split("\n");
+                  buffer += decoder.decode(value, { stream: true });
+                  const lines = buffer.split("\n");
+                  buffer = lines.pop() || "";
 
                   for (const line of lines) {
                     const trimmed = line.trim();
@@ -117,7 +144,7 @@ export const Route = createFileRoute("/api/chat")({
                     const data = trimmed.slice(5).trim();
                     if (data === "[DONE]") {
                       controller.close();
-                      break;
+                      return;
                     }
 
                     try {
@@ -140,8 +167,7 @@ export const Route = createFileRoute("/api/chat")({
 
           return new Response(stream, {
             headers: {
-              "Content-Type": "text/plain",
-              "Transfer-Encoding": "chunked",
+              "Content-Type": "text/plain; charset=utf-8",
               "Cache-Control": "no-cache",
             },
           });
