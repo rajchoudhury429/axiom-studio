@@ -5,7 +5,7 @@ import { DEFAULT_KEYWORDS } from "@/lib/seo";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Raj Choudhury & AXIOM Studio" },
+      { title: "About — Raj Choudhury & AXIOM Workspace" },
       {
         name: "description",
         content:
@@ -13,7 +13,7 @@ export const Route = createFileRoute("/about")({
       },
       { name: "keywords", content: DEFAULT_KEYWORDS },
       { name: "robots", content: "index, follow" },
-      { property: "og:title", content: "About — Raj Choudhury & AXIOM Studio" },
+      { property: "og:title", content: "About — Raj Choudhury & AXIOM Workspace" },
       {
         property: "og:description",
         content:
@@ -47,7 +47,7 @@ const TIMELINE = [
   {
     year: "2026 · AXIOM Founded",
     title: "Building the Collective",
-    body: "Forming AXIOM Studio alongside Daniyal, Jigyashu, Banajit, and Abhijeet. Developing AXIOM v1 (reasoning surface) and Ledger (agent memory), unifying design, backend APIs, and frontend motion.",
+    body: "Forming AXIOM Workspace alongside Daniyal, Jigyashu, Banajit, and Abhijeet. Developing AXIOM v1 (reasoning surface) and Ledger (agent memory), unifying design, backend APIs, and frontend motion.",
   },
 ];
 
@@ -63,7 +63,7 @@ function About() {
           <span className="text-shine">Systems over static demos.</span>
         </h1>
         <p className="mt-8 max-w-3xl text-base leading-relaxed text-muted-foreground">
-          I'm <strong>Raj Choudhury</strong>, a developer and project lead focused on building full-stack web applications, AI systems, and human-centered user interfaces. <strong>AXIOM Studio</strong> is our independent workspace created to build software that is practical, durable, and clear.
+          I'm <strong>Raj Choudhury</strong>, a developer and project lead focused on building full-stack web applications, AI systems, and human-centered user interfaces. <strong>AXIOM Workspace</strong> is our independent workspace created to build software that is practical, durable, and clear.
         </p>
       </section>
 
@@ -84,7 +84,7 @@ function About() {
               When artificial intelligence started rapidly advancing, I noticed a common gap: most applications were built as quick API wrappers without proper context management, fallback routing, or long-term state. I became fascinated by how we can make AI tools feel reliable, respectful of user focus, and deeply integrated into practical daily workflows.
             </p>
             <p>
-              AXIOM Studio was created to explore these questions alongside a small group of collaborators who share a passion for continuous learning, modular code architecture, and high-quality design.
+              AXIOM Workspace was created to explore these questions alongside a small group of collaborators who share a passion for continuous learning, modular code architecture, and high-quality design.
             </p>
           </div>
         </div>

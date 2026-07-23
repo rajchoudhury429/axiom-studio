@@ -34,12 +34,12 @@ const MEMBERS = [
     name: "Raj Choudhury",
     role: "Project Lead · Systems Architect",
     tags: ["Systems Architecture", "AI Orchestration", "Full-Stack"],
-    bio: "Project Lead and Systems Architect at AXIOM Studio. Raj oversees technical direction, system design, and AI model routing integrations. He focuses on orchestrating backend systems with responsive frontend surfaces.",
+    bio: "Project Lead and Systems Architect at AXIOM Workspace. Raj oversees technical direction, system design, and AI model routing integrations. He focuses on orchestrating backend systems with responsive frontend surfaces.",
     responsibilities: "Overall architecture, AI provider integrations, multi-model routing logic, and setting technical milestones.",
     interests: "Multi-agent systems, latency budgets, stateful memory ledgers, and functional programming.",
     contribution: "Designed AXIOM v1 routing core, unified project standards, and leads technical decision-making.",
     workingStyle: "Systematic, context-driven, and focused on breaking down high-level ideas into modular components.",
-    skills: ["TypeScript", "React", "Next.js", "Node.js", "Go", "PostgreSQL", "Groq API"],
+    skills: ["React 19", "Vite", "Tailwind CSS v4", "Node.js", "Express.js", "SQLite", "Gemini SDK"],
     projects: ["AXIOM v1 Core", "Router v2", "Ledger Memory"],
   },
   {
@@ -51,7 +51,7 @@ const MEMBERS = [
     interests: "Relational database performance, gRPC streams, microservice communication, and server caching.",
     contribution: "Built backend API endpoints, authentication flows, and PostgreSQL data persistence for Ledger.",
     workingStyle: "Methodical and focused on server uptime, clear API contracts, and defensive error handling.",
-    skills: ["Node.js", "Express", "PostgreSQL", "Redis", "REST APIs", "gRPC"],
+    skills: ["Node.js", "Express.js", "SQLite", "better-sqlite3", "REST APIs", "pdf-parse"],
     projects: ["API Gateway", "Ledger Storage", "Server Handlers"],
   },
   {
@@ -63,7 +63,7 @@ const MEMBERS = [
     interests: "Framer Motion, WebGL shaders, Three.js 3D canvas, CSS hardware acceleration, and GPU rendering.",
     contribution: "Created the AI Core interactive orbit visualizer, smooth page transitions, and motion utilities.",
     workingStyle: "Creative and detail-oriented, ensuring 60fps animations that enhance usability without bloating load times.",
-    skills: ["React", "TypeScript", "Framer Motion", "Tailwind CSS", "Three.js", "Canvas"],
+    skills: ["React", "TypeScript", "Framer Motion", "Tailwind CSS v4", "Three.js & R3F", "Canvas"],
     projects: ["AI Core Orbit", "Motion Kit", "AXIOM Visual System"],
   },
   {
@@ -75,7 +75,7 @@ const MEMBERS = [
     interests: "Design systems, mobile responsiveness, typography hierarchy, and accessibility standards.",
     contribution: "Engineered site layout shell, theme toggle infrastructure, and responsive CSS token systems.",
     workingStyle: "User-centric, prioritizing layout clarity, intuitive navigation, and consistent UI spacing.",
-    skills: ["React", "Tailwind CSS", "CSS Variables", "Radix UI", "Accessibility (a11y)"],
+    skills: ["React", "Tailwind CSS v4", "CSS Variables", "TipTap & Quill", "Chart.js", "Web Speech API"],
     projects: ["Studio Design System", "Layout Shell", "Responsive Framework"],
   },
   {
@@ -134,7 +134,7 @@ function Team() {
           <span className="text-shine">One shared focus.</span>
         </h1>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
-          AXIOM Studio is powered by five developers collaborating closely across systems design, backend APIs, frontend motion, UX, and quality assurance.
+          AXIOM Workspace is powered by five developers collaborating closely across systems design, backend APIs, frontend motion, UX, and quality assurance.
         </p>
       </section>
 

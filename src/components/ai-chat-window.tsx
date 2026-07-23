@@ -191,7 +191,7 @@ export function ChatWindow({
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95, y: 20 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
-      className="flex h-[600px] w-[380px] flex-col rounded-2xl border border-border bg-background/95 shadow-2xl backdrop-blur-xl md:h-[650px] md:w-[400px]"
+      className="flex h-[calc(100dvh-100px)] max-h-[600px] w-full sm:w-[380px] sm:h-[600px] sm:max-h-[600px] md:w-[400px] md:h-[650px] md:max-h-[650px] flex-col rounded-2xl border border-border bg-background/95 shadow-2xl backdrop-blur-xl"
       role="dialog"
       aria-modal="true"
       aria-label="AXIOM AI Chat"

@@ -92,7 +92,7 @@ const PROJECTS: ProjectDetail[] = [
     solutions:
       "Implemented SSE buffer concatenation and payload filtering prior to Groq API requests.",
     currentStatus:
-      "Live in active use across AXIOM Studio. Serving as the embedded assistant on axiom.studio.",
+      "Live in active use across AXIOM Workspace. Serving as the embedded assistant on axiom.studio.",
     futurePlans:
       "Integrating local OCR processing, full audio-to-text voice input, and multi-document PDF embedding vectors.",
   },
@@ -198,7 +198,7 @@ function Projects() {
           Software engineered <span className="text-shine">for purpose.</span>
         </h1>
         <p className="mt-6 max-w-3xl text-base leading-relaxed text-muted-foreground">
-          Explore the projects built by <strong>Raj Choudhury</strong> and the <strong>AXIOM Studio</strong> team. Click on any project card below to review its architecture, features, challenges, and future roadmap.
+          Explore the projects built by <strong>Raj Choudhury</strong> and the <strong>AXIOM Workspace</strong> team. Click on any project card below to review its architecture, features, challenges, and future roadmap.
         </p>
       </section>
 

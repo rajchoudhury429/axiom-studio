@@ -11,7 +11,7 @@ export const Route = createFileRoute("/skills")({
       {
         name: "description",
         content:
-          "Categorized technical capabilities across Frontend, Backend, AI systems, UI/UX, Databases, Dev Tools, and Hosting at AXIOM Studio.",
+          "Categorized technical capabilities across Frontend, Backend, AI systems, UI/UX, Databases, Dev Tools, and Hosting at AXIOM Workspace.",
       },
       { name: "keywords", content: DEFAULT_KEYWORDS },
       { name: "robots", content: "index, follow" },
@@ -45,56 +45,56 @@ const CATEGORIES: SkillCategory[] = [
     title: "Frontend Development",
     badge: "UI / UX",
     description: "Building responsive, modern, and accessible user interfaces with clean component architectures.",
-    usageInProjects: "Used across all web applications, rendering fast React 19 pages with TanStack Start, TypeScript, and Tailwind CSS v4.",
-    skillsList: ["HTML5", "CSS3 / Vanilla CSS", "JavaScript (ES6+)", "React 19", "Next.js", "Tailwind CSS v4"],
+    usageInProjects: "Used across all web applications, rendering React 19 pages with Vite, Tailwind CSS v4, and Rich Text editors.",
+    skillsList: ["React 19", "Vite", "Tailwind CSS v4", "TipTap", "React Quill", "Chart.js"],
   },
   {
     id: "backend",
     title: "Backend & APIs",
     badge: "SERVER",
-    description: "Engineering scalable server handlers, API routes, streaming SSE connections, and microservice backends.",
-    usageInProjects: "Powering `/api/chat` streaming endpoints, server-side data fetching, and microservice REST/gRPC interfaces.",
-    skillsList: ["Node.js", "Express", "Go", "REST APIs", "gRPC", "Server-Sent Events (SSE)"],
+    description: "Engineering server API controllers, local endpoint routing, and token validation logic.",
+    usageInProjects: "Powering notes database synchronizations, dashboard statistics, system telemetry endpoints, and auth tokens.",
+    skillsList: ["Node.js", "Express.js", "REST APIs", "JWT Authentication", "Role Validation", "Cors Routing"],
   },
   {
     id: "ai",
     title: "AI & Intelligent Systems",
     badge: "MODEL",
-    description: "Integrating multi-provider LLM models, prompt orchestration, prompt routing, and agent memory.",
-    usageInProjects: "Used in AXIOM v1 and Router v2 to dynamically route user prompts across Gemini, Claude, DeepSeek, and Groq APIs.",
-    skillsList: ["Groq API", "OpenAI SDK", "Multi-model Routing", "System Prompts", "Context Management"],
+    description: "Orchestrating text intelligence generators, optical scan parsers, and document loaders.",
+    usageInProjects: "Engaging Gemini AI for context reviews, Tesseract.js for OCR image scans, and pdf-parse for doc extraction.",
+    skillsList: ["Google Generative AI", "Gemini SDK", "Tesseract.js OCR", "pdf-parse API", "Prompt Injection"],
   },
   {
     id: "design",
-    title: "UI/UX & Design Systems",
+    title: "UI/UX & Motion Systems",
     badge: "DESIGN",
-    description: "Crafting modern visual identity, dark futurist aesthetics, accessible UI primitives, and micro-animations.",
-    usageInProjects: "Applied throughout AXIOM UI using Radix UI primitives, Framer Motion transitions, and dark-mode glassmorphism.",
-    skillsList: ["Framer Motion", "Radix UI Primitives", "Responsive Layouts", "Design System Tokens", "Accessibility (a11y)"],
+    description: "Creating high-tech dark themes, WebGL visualizers, and interactive screen overlays.",
+    usageInProjects: "Displaying rotating Three.js canvas orbs, debounced sliders, and collapsible bottom hexagon menus.",
+    skillsList: ["Three.js", "React Three Fiber", "Framer Motion", "HUD Style Guide", "Keyboard Nav", "Volume Sliders"],
   },
   {
     id: "database",
     title: "Database & Data",
     badge: "DATA",
-    description: "Persisting structured tabular data, vector embeddings, and fast in-memory key-value caching.",
-    usageInProjects: "Storing user memory in PostgreSQL with pgvector for Ledger, Redis for caching, and LocalStorage for chat history.",
-    skillsList: ["PostgreSQL", "pgvector", "Redis", "LocalStorage API", "Schema Design"],
+    description: "Storing local relational database records and handling migrations/schema configurations.",
+    usageInProjects: "Persisting tasks, notes folders, calendars, chapter checklists, and chat sessions in SQLite files.",
+    skillsList: ["SQLite", "SQLite3 Core", "better-sqlite3", "Relational Schemas", "Sync SQL speed"],
+  },
+  {
+    id: "automation",
+    title: "OS Automation",
+    badge: "OS AUTO",
+    description: "Invoking native Windows scripts and starting executable programs from browser triggers.",
+    usageInProjects: "Powering launcher-server endpoints, volume helper files, and pyautogui playback sequences.",
+    skillsList: ["Tkinter GUI", "PyAutoGUI automation", "PowerShell Helper", "HTTP port 5050", "start exe command"],
   },
   {
     id: "tools",
     title: "Development Tools",
     badge: "TOOLS",
-    description: "Tooling for type-safe code, fast module bundling, code linting, formatting, and version control.",
-    usageInProjects: "Strict TypeScript compilation, Vite build bundling, ESLint validation, Prettier formatting, and Git workflow.",
-    skillsList: ["Vite", "TypeScript 5", "ESLint", "Prettier", "Git & GitHub", "Bun / npm"],
-  },
-  {
-    id: "deployment",
-    title: "Deployment & Hosting",
-    badge: "HOST",
-    description: "Configuring serverless edge runtime servers, continuous integration, and netlify deployments.",
-    usageInProjects: "Deploying Netlify serverless functions, Nitro SSR server handlers, and cloud environments.",
-    skillsList: ["Netlify", "Nitro Engine", "Vite Server", "Cloudflare Workers", "Environment Config"],
+    description: "Managing local projects dependencies, build bundling, code syntax linting, and git version history.",
+    usageInProjects: "Compiling client bundles in Vite, linting script files via oxlint, and saving Git chronologies.",
+    skillsList: ["Vite Compiler", "Oxlint validation", "Git & GitHub", "npm scripts", "Nodemon reloading"],
   },
 ];
 
@@ -109,7 +109,7 @@ type SkillNode = {
 };
 
 const SKILL_NODES: SkillNode[] = [
-  // Inner Ring (6 Core Skills)
+  // Inner Ring (8 Core Skills)
   {
     name: "React 19",
     short: "React",
@@ -117,16 +117,16 @@ const SKILL_NODES: SkillNode[] = [
     cat: "Frontend",
     ring: "inner",
     description: "Declarative component-based UI library for building interactive web interfaces.",
-    usage: "Primary UI framework rendering fast client pages, component trees, and chat windows.",
+    usage: "Primary UI framework rendering all student widgets, planners, and layout dashboards.",
   },
   {
-    name: "TypeScript 5",
-    short: "TS",
-    badge: "LANG",
-    cat: "Frontend",
+    name: "SQLite Database",
+    short: "SQLite",
+    badge: "DATA",
+    cat: "Database",
     ring: "inner",
-    description: "Typed superset of JavaScript providing static type checking at compile time.",
-    usage: "Enforces strict type safety across all frontend and backend source files.",
+    description: "Embedded SQL database engine for zero-config local persistence.",
+    usage: "Persists student notes, flashcards, countdown goals, and timetables locally via SQLite schemas.",
   },
   {
     name: "Node.js",
@@ -134,109 +134,181 @@ const SKILL_NODES: SkillNode[] = [
     badge: "RUNTIME",
     cat: "Backend",
     ring: "inner",
-    description: "Asynchronous event-driven JavaScript runtime environment for backend logic.",
-    usage: "Serves server routes (`/api/chat`), environment resolution, and backend API handlers.",
+    description: "Asynchronous JavaScript server environment.",
+    usage: "Executes the main API server process, routing REST payloads and file buffers.",
   },
   {
-    name: "Go (Golang)",
-    short: "Go",
-    badge: "SYSTEMS",
-    cat: "Backend",
-    ring: "inner",
-    description: "Statically typed compiled language known for high concurrency and low memory usage.",
-    usage: "Powers Ledger agentic memory microservices requiring sub-20ms latency.",
-  },
-  {
-    name: "Groq API",
-    short: "Groq",
+    name: "Google Generative AI",
+    short: "Gemini",
     badge: "AI",
     cat: "AI & ML",
     ring: "inner",
-    description: "High-speed inference engine powering large language models like Llama 3.3 70B.",
-    usage: "Powers the real-time AI assistant on the website via `/api/chat` text streaming.",
+    description: "Google DeepMind's LLM reasoning SDK for text, chat, and prompt analysis.",
+    usage: "Acts as the intelligence engine behind note explanations and PDF analysis.",
   },
   {
-    name: "PostgreSQL",
-    short: "Postgres",
-    badge: "DATA",
-    cat: "Database",
+    name: "Python",
+    short: "Python",
+    badge: "LANG",
+    cat: "OS Automation",
     ring: "inner",
-    description: "Relational database management system with vector extension for similarity search.",
-    usage: "Persists user context schemas, vector embeddings, and audit logs in Ledger.",
+    description: "High-level scripting runtime for system scripts and app launchers.",
+    usage: "Invokes external programs, playback macros, and local servers outside the browser context.",
   },
-
-  // Outer Ring (8 Skills)
   {
     name: "Tailwind CSS v4",
     short: "Tailwind",
-    badge: "CSS",
+    badge: "STYLING",
     cat: "Frontend",
-    ring: "outer",
-    description: "Utility-first CSS framework for styling components via composable class tokens.",
-    usage: "Styles glassmorphic cards, layout grids, theme design tokens, and dark mode aesthetics.",
+    ring: "inner",
+    description: "Utility-first design tokens CSS compiler.",
+    usage: "Styles the dark sci-fi HUD theme, grid layers, and collapsible navigation hexagon docks.",
   },
   {
-    name: "Next.js",
-    short: "Next",
-    badge: "APP",
-    cat: "Frontend",
-    ring: "outer",
-    description: "Full-stack React framework supporting SSR, SSG, and edge server routes.",
-    usage: "Used in full-stack web applications and edge function rendering architecture.",
-  },
-  {
-    name: "Redis",
-    short: "Redis",
-    badge: "CACHE",
-    cat: "Database",
-    ring: "outer",
-    description: "In-memory key-value data structure store used as a cache and message broker.",
-    usage: "Handles fast rate limiting and ephemeral memory caching in backend services.",
-  },
-  {
-    name: "Multi-model Routing",
-    short: "Router",
-    badge: "ORCHESTRATOR",
-    cat: "AI & ML",
-    ring: "outer",
-    description: "Dynamic prompt dispatcher routing queries across Gemini, Claude, DeepSeek, and Groq.",
-    usage: "Prevents provider lock-in and optimizes reasoning performance versus latency.",
+    name: "Express.js",
+    short: "Express",
+    badge: "SERVER",
+    cat: "Backend",
+    ring: "inner",
+    description: "Minimal web framework routing backend server endpoints.",
+    usage: "Handles authorization guards, study timer counters, and file exploration queries.",
   },
   {
     name: "Framer Motion",
     short: "Motion",
     badge: "ANIMATION",
     cat: "UI/UX",
-    ring: "outer",
-    description: "Motion library for React used to create smooth component animations and page transitions.",
-    usage: "Creates smooth card entry animations, floating detail windows, and layout transitions.",
+    ring: "inner",
+    description: "Declarative motion UI transitions library.",
+    usage: "Animates auto-hiding indicator dots and sliding menu docks in desktop layouts.",
   },
+
+  // Outer Ring (14 Skills)
   {
-    name: "Radix UI",
-    short: "Radix",
-    badge: "PRIMITIVES",
-    cat: "UI/UX",
-    ring: "outer",
-    description: "Unstyled, accessible UI component primitives for building custom design systems.",
-    usage: "Provides accessible dialogs, tooltips, popovers, and navigation primitives.",
-  },
-  {
-    name: "Vite & Nitro",
+    name: "Vite",
     short: "Vite",
     badge: "BUILD",
     cat: "Tools",
     ring: "outer",
-    description: "Next-generation frontend build tooling and universal server engine.",
-    usage: "Bundles project assets, compiles TypeScript, and generates production serverless builds.",
+    description: "Ultra-fast frontend build tool and dev server.",
+    usage: "Bundles frontend assets and provides fast Hot Module Replacement during development.",
   },
   {
-    name: "Netlify",
-    short: "Netlify",
-    badge: "HOSTING",
-    cat: "Hosting",
+    name: "Three.js",
+    short: "Three.js",
+    badge: "3D ENGINE",
+    cat: "UI/UX",
     ring: "outer",
-    description: "Serverless edge cloud platform for continuous integration and web application hosting.",
-    usage: "Deploys production serverless edge functions and static client assets.",
+    description: "WebGL 3D graphics rendering engine.",
+    usage: "Renders low-level canvas vectors for rotating futuristic dashboard cores.",
+  },
+  {
+    name: "React Three Fiber",
+    short: "R3F",
+    badge: "3D BRIDGE",
+    cat: "UI/UX",
+    ring: "outer",
+    description: "React wrapper for declarative Three.js integration.",
+    usage: "Maintains WebGL meshes and updates properties based on React component states.",
+  },
+  {
+    name: "Chart.js",
+    short: "Chart",
+    badge: "GRAPH",
+    cat: "Frontend",
+    ring: "outer",
+    description: "Lightweight HTML5 canvas charting library.",
+    usage: "Configures visual graph styles for data dashboards.",
+  },
+  {
+    name: "react-chartjs-2",
+    short: "Chart.js 2",
+    badge: "CHART WRAP",
+    cat: "Frontend",
+    ring: "outer",
+    description: "React bindings for Chart.js rendering.",
+    usage: "Synchronizes dashboard metrics datasets with the canvas render context.",
+  },
+  {
+    name: "TipTap",
+    short: "TipTap",
+    badge: "EDITOR",
+    cat: "Frontend",
+    ring: "outer",
+    description: "Headless rich text editor framework.",
+    usage: "Handles typing state schemas and custom formatting options inside notebooks.",
+  },
+  {
+    name: "Quill Editor",
+    short: "Quill",
+    badge: "EDITOR",
+    cat: "Frontend",
+    ring: "outer",
+    description: "Robust rich text editor using delta formats.",
+    usage: "Renders fallback document editing sheets inside note detail sections.",
+  },
+  {
+    name: "Web Speech API",
+    short: "Speech",
+    badge: "AUDIO",
+    cat: "UI/UX",
+    ring: "outer",
+    description: "Browser native Speech Synthesis and Recognition.",
+    usage: "Listens for voice commands and speaks chatbot responses without network keys.",
+  },
+  {
+    name: "better-sqlite3",
+    short: "sqlite3",
+    badge: "DRIVER",
+    cat: "Database",
+    ring: "outer",
+    description: "Fast synchronous SQLite driver for Node.",
+    usage: "Avoids async overheads for rapid C-Drive read/write operations.",
+  },
+  {
+    name: "Tesseract.js",
+    short: "Tesseract",
+    badge: "OCR",
+    cat: "AI & ML",
+    ring: "outer",
+    description: "Optical Character Recognition parsing engine.",
+    usage: "Ingests scanned document uploads to output editable text fields locally.",
+  },
+  {
+    name: "PDF.js",
+    short: "PDF.js",
+    badge: "PDF",
+    cat: "AI & ML",
+    ring: "outer",
+    description: "Client-side PDF page renderer.",
+    usage: "Extracts text bounds and displays pages within the smart PDF workspace.",
+  },
+  {
+    name: "pdf-parse",
+    short: "pdf-parse",
+    badge: "PDF PARSER",
+    cat: "AI & ML",
+    ring: "outer",
+    description: "Backend PDF binary buffer text extractor.",
+    usage: "Extracts raw text strings from student book uploads for summaries.",
+  },
+  {
+    name: "Tkinter GUI",
+    short: "Tkinter",
+    badge: "DESKTOP UI",
+    cat: "OS Automation",
+    ring: "outer",
+    description: "Python standard GUI toolkit.",
+    usage: "Renders the desktop launcher program interface on port 5050.",
+  },
+  {
+    name: "PowerShell scripts",
+    short: "PowerShell",
+    badge: "SHELL",
+    cat: "OS Automation",
+    ring: "outer",
+    description: "Native Windows shell execution scripts.",
+    usage: "Queries and sets master volume configurations via backend helper systems.",
   },
 ];
 
@@ -302,7 +374,7 @@ function Skills() {
           <span className="text-shine">and engineering capabilities.</span>
         </h1>
         <p className="mt-4 max-w-3xl text-sm sm:text-base leading-relaxed text-muted-foreground">
-          A structured overview of the technical stack, frameworks, backend APIs, and design systems used by <strong>Raj Choudhury</strong> and the <strong>AXIOM Studio</strong> team. Click any orb or category card to open full details.
+          A structured overview of the technical stack, frameworks, backend APIs, and design systems used by <strong>Raj Choudhury</strong> and the <strong>AXIOM Workspace</strong> team. Click any orb or category card to open full details.
         </p>
       </motion.section>
 
@@ -355,7 +427,8 @@ function Skills() {
                 top: `${n.y}%`,
                 width: n.size,
                 height: n.size,
-                transform: "translate(-50%, -50%)",
+                x: "-50%",
+                y: "-50%",
               }}
             >
               {/* Glowing Orb Circle */}
@@ -439,14 +512,14 @@ function Skills() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedNode(null)}
-              className="fixed inset-0 bg-background/85 backdrop-blur-md"
+              className="fixed inset-0 bg-background/90"
             />
 
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 15 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="relative z-10 w-full max-w-lg glass-red rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 border border-crimson/50 shadow-[0_0_35px_rgba(235,50,75,0.3)] space-y-4 sm:space-y-6 max-h-[85vh] sm:max-h-[90vh] flex flex-col justify-between overflow-hidden"
             >
               <div className="flex items-start justify-between gap-3 border-b border-border/40 pb-3 flex-shrink-0">
@@ -513,14 +586,14 @@ function Skills() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedCategory(null)}
-              className="fixed inset-0 bg-background/85 backdrop-blur-md"
+              className="fixed inset-0 bg-background/90"
             />
 
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 15 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="relative z-10 w-full max-w-lg md:max-w-xl glass-red rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 border border-crimson/50 shadow-[0_0_35px_rgba(235,50,75,0.3)] space-y-4 sm:space-y-6 max-h-[85vh] sm:max-h-[90vh] flex flex-col justify-between overflow-hidden"
             >
               <div className="flex items-start justify-between gap-3 border-b border-border/40 pb-3 flex-shrink-0">

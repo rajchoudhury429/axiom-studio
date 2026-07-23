@@ -9,7 +9,7 @@ export const Route = createFileRoute("/journey")({
       {
         name: "description",
         content:
-          "The evolution of AXIOM Studio: from early coding explorations to multi-model AI systems, team collaboration, and future roadmaps.",
+          "The evolution of AXIOM Workspace: from early coding explorations to multi-model AI systems, team collaboration, and future roadmaps.",
       },
       { name: "keywords", content: DEFAULT_KEYWORDS },
       { name: "robots", content: "index, follow" },
@@ -58,7 +58,7 @@ const MILESTONES: Milestone[] = [
     phase: "Phase 03",
     period: "AXIOM Development",
     title: "AI Integration & Architecture",
-    description: "Forming AXIOM Studio alongside Daniyal, Jigyashu, Banajit, and Abhijeet to engineer practical AI surfaces.",
+    description: "Forming AXIOM Workspace alongside Daniyal, Jigyashu, Banajit, and Abhijeet to engineer practical AI surfaces.",
     details: "Designing the multi-model AI routing engine (AXIOM v1) and agent memory store (Ledger). Establishing unified UI design tokens, dark mode glassmorphism, and Framer Motion animations.",
     state: "completed",
   },
@@ -98,7 +98,7 @@ function Journey() {
           The engineering path <span className="text-shine">from then to next.</span>
         </h1>
         <p className="mt-6 max-w-3xl text-base leading-relaxed text-muted-foreground">
-          A chronological index of our development stages — tracking how early programming curiosity evolved into AXIOM Studio, active production systems, and long-term project roadmaps.
+          A chronological index of our development stages — tracking how early programming curiosity evolved into AXIOM Workspace, active production systems, and long-term project roadmaps.
         </p>
       </section>
 

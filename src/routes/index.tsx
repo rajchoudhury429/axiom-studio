@@ -221,7 +221,7 @@ function Hero() {
               <span className="text-shine">together.</span>
             </h1>
             <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground">
-              Welcome to <strong>AXIOM Studio</strong> — an independent engineering hub led by <strong>Raj Choudhury</strong> alongside a close team of 5 developers. We bridge the space between modern web development, artificial intelligence, and fluid UI design, building intelligent systems with craft, intent, and performance.
+              Welcome to <strong>AXIOM Workspace</strong> — an independent engineering hub led by <strong>Raj Choudhury</strong> alongside a close team of 5 developers. We bridge the space between modern web development, artificial intelligence, and fluid UI design, building intelligent systems with craft, intent, and performance.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <Link
@@ -279,10 +279,10 @@ function Introduction() {
           </div>
           <div className="space-y-6 lg:col-span-7 text-sm leading-relaxed text-muted-foreground">
             <p>
-              <strong>AXIOM Studio</strong> is built on the belief that intelligent software should feel responsive, transparent, and genuinely useful. Rather than building disposable chat wrappers or generic portfolio templates, Raj and the team build complete systems — combining multi-model AI routing, persistent episodic memory, and human-centered frontend interfaces.
+              <strong>AXIOM Workspace</strong> is built on the belief that intelligent software should feel responsive, transparent, and genuinely useful. Rather than building disposable chat wrappers or generic portfolio templates, Raj and the team build complete systems — combining multi-model AI routing, persistent episodic memory, and human-centered frontend interfaces.
             </p>
             <p>
-              Our technical stack is rooted in <strong>React, TypeScript, Next.js, TanStack Start, Node.js, Go, and PostgreSQL</strong>. On top of this core, we integrate multi-provider AI backends (Gemini, Claude, DeepSeek, and Groq) alongside smooth UI animations with Framer Motion and WebGL.
+              Our technical stack is rooted in <strong>React, Vite, Tailwind CSS v4, Node.js, Express.js, SQLite, and Python OS Launcher</strong>. On top of this core, we integrate multi-provider AI backends (Gemini SDK, Tesseract.js, and PDF.js) alongside smooth UI animations with Framer Motion and WebGL.
             </p>
             <div className="grid gap-4 sm:grid-cols-2 pt-2">
               <div className="rounded-xl border border-border/70 bg-background/50 p-4">

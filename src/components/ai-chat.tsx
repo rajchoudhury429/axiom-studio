@@ -40,19 +40,21 @@ export function AIChat() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed bottom-6 right-6 z-50"
+            className="fixed bottom-4 right-4 left-4 sm:left-auto sm:bottom-6 sm:right-6 z-50 flex justify-end pointer-events-none"
           >
-            <ChatWindow
-              messages={messages}
-              isOpen={isOpen}
-              onClose={() => setIsOpen(false)}
-              onSendMessage={handleSendMessage}
-              onClearHistory={handleClearHistory}
-              isStreaming={isStreaming}
-              setIsStreaming={setIsStreaming}
-              updateLastMessage={updateLastMessage}
-              triggerRef={chatButtonRef}
-            />
+            <div className="pointer-events-auto">
+              <ChatWindow
+                messages={messages}
+                isOpen={isOpen}
+                onClose={() => setIsOpen(false)}
+                onSendMessage={handleSendMessage}
+                onClearHistory={handleClearHistory}
+                isStreaming={isStreaming}
+                setIsStreaming={setIsStreaming}
+                updateLastMessage={updateLastMessage}
+                triggerRef={chatButtonRef}
+              />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -10,7 +10,7 @@ export const Route = createFileRoute("/docs")({
       {
         name: "description",
         content:
-          "Official technical documentation, architecture guides, API references, and development guides for AXIOM Studio.",
+          "Official technical documentation, architecture guides, API references, and development guides for AXIOM Workspace.",
       },
       { name: "keywords", content: DEFAULT_KEYWORDS },
       { name: "robots", content: "index, follow" },
@@ -43,67 +43,58 @@ const DOCS_DATABASE: DocItem[] = [
   {
     id: "arch-overview",
     category: "Architecture",
-    title: "System Architecture & Layering",
-    purpose: "Provides a high-level conceptual overview of how client UI, routing planes, AI provider adapters, and memory ledgers interact.",
+    title: "Sci-Fi HUD UI & Collapsible Dock Layout",
+    purpose: "Provides the visual specifications of AXIOM's sci-fi themed, layout-locked student workspace.",
     status: "Active & Stable",
-    body: "AXIOM Studio applications are built across four decoupled layers: 1) Client Surface (TanStack Router & React 19 UI), 2) Server API Gateway (`/api/chat` server route handlers), 3) Model Routing Engine (Groq / OpenRouter provider adapters), and 4) Ledger Memory (PostgreSQL + pgvector). Each layer exposes a minimal API contract so components can be updated independently without breaking system state.",
-    snippet: `Client UI (React 19) → Server Handler (/api/chat) → Groq / Provider Adapter → Ledger Memory (PostgreSQL)`,
-  },
-  {
-    id: "api-chat",
-    category: "API Reference",
-    title: "Server Route: POST /api/chat",
-    purpose: "Documents the primary streaming chat API endpoint connecting the client assistant window to Groq / LLM backends.",
-    status: "Active & Stable",
-    body: "The `/api/chat` endpoint receives a JSON payload containing `messages: Array<{ role: string; content: string }>`. It validates non-empty message payloads, extracts `GROQ_API_KEY` (with fallback across NITRO and VITE environment variables), and returns a readable UTF-8 text stream using Server-Sent Events (SSE) line-buffering.",
-    snippet: `POST /api/chat
-Content-Type: application/json
-
-{
-  "messages": [
-    { "role": "user", "content": "What is AXIOM Studio?" }
-  ]
-}
-
-Response: 200 OK (text/plain; charset=utf-8) Streamed Tokens`,
-  },
-  {
-    id: "setup-env",
-    category: "Setup & Config",
-    title: "Environment Variables & Local Setup",
-    purpose: "Guides developers on configuring environment variables for local development and Netlify / Nitro serverless deployment.",
-    status: "Active & Stable",
-    body: "Environment configuration is managed via `.env` files. For client-side Web3Forms contact form access, `VITE_WEB3FORMS_ACCESS_KEY` is specified. For server-side AI chat assistance, `GROQ_API_KEY` (and `NITRO_GROQ_API_KEY` for Nitro runtime) are defined to ensure runtime key availability.",
-    snippet: `# Local .env Configuration
-VITE_WEB3FORMS_ACCESS_KEY=b0ed214b-707e-4197-a1ae-eaf7a735610c
-NITRO_WEB3FORMS_ACCESS_KEY=b0ed214b-707e-4197-a1ae-eaf7a735610c
-GROQ_API_KEY=your_groq_api_key_here
-NITRO_GROQ_API_KEY=your_groq_api_key_here`,
+    body: "AXIOM is designed around a high-tech dark theme (#050505, #0d0d0d) with red glowing borders. It uses the Rajdhani font for geometric headers, JetBrains Mono for system readouts, and incorporates an auto-hiding collapsible navigation hexagon dock that shrinks to a pulsing dot on sub-pages (AI Chat, Smart Notes, Task Manager) to maximize active screen space.",
+    snippet: `Layout components: CircuitBackground (rotating vectors) ➔ AxiomOrb (Three.js WebGL visualizer) ➔ Collapsible Hexagon Dock (Framer Motion)`,
   },
   {
     id: "dev-structure",
     category: "Development Notes",
-    title: "Repository Folder Structure & Conventions",
-    purpose: "Outlines the directory layout, naming standards, and module organization within `src/`.",
+    title: "Repository Folder Structure & Controller Layout",
+    purpose: "Outlines the directory layout and modular folder structure for frontend and backend workspaces.",
     status: "Active & Stable",
-    body: "The workspace uses a modern Vite + TanStack Start directory structure: `src/routes/` for file-based page routes (`__root.tsx`, `index.tsx`, `about.tsx`, `team.tsx`, `projects.tsx`, `skills.tsx`, `technology.tsx`, `research.tsx`, `journey.tsx`, `docs.tsx`, `contact.tsx`), `src/components/` for UI components (`site.tsx`, `ai-chat-window.tsx`), `src/lib/` for services (`ai-service.ts`, `seo.ts`), and `src/contexts/` for global theme state.",
-    snippet: `src/
-├── routes/       # File-based TanStack routes & server handlers
-├── components/   # UI components, site shell, and AI assistant
-├── lib/          # AI adapters, SEO helpers, and utility functions
-├── contexts/     # Theme context provider (light/dark mode)
-└── styles.css    # Tailwind CSS v4 design tokens and glassmorphism`,
+    body: "The root workspace directory splits into frontend/ (React Vite application running on port 5173) and backend/ (Express server on port 5000). The backend folder organizes routes and controllers for user authentication, dashboard metrics tracking, notes CRUD, PDF file parsers, Pomodoro countdowns, and Windows local command utilities.",
+    snippet: `A.X.I.O.M/
+├── backend/           # Node.js + Express API
+│   ├── server.js      # Server entry (port 5000)
+│   └── src/           # Controllers, routes, utils (agentLoop, volumeHelper)
+└── frontend/          # React + Vite application (port 5173)`,
+  },
+  {
+    id: "setup-env",
+    category: "Setup & Config",
+    title: "SQLite Database Schema (axiom.db)",
+    purpose: "Documents the schema configuration and tables used to persist local student study data.",
+    status: "Active & Stable",
+    body: "Student data is persisted locally in an embedded SQLite database using better-sqlite3. Table schemas include users (with administrative role controls), notes (folders, titles, tags, content), tasks (categories and priority scales), events (timetable schedules), flashcards (for spaced repetition), and analytics (daily study minutes tracking).",
+    snippet: `SQLite Tables:
+- users: id, name, email, password_hash, role
+- notes: id, user_id, title, content, folder, tags
+- tasks: id, user_id, title, status, priority, due_date
+- flashcards: id, subject_id, front, back, next_review_date`,
+  },
+  {
+    id: "api-chat",
+    category: "API Reference",
+    title: "REST API Endpoint Reference",
+    purpose: "Provides the endpoints mapped inside the Express server for auth, telemetry, and data queries.",
+    status: "Active & Stable",
+    body: "Endpoints are split into public auth routes, protected student database CRUD (notes, tasks, Pomodoro timers), and restricted administrative controls. System diagnostics, volume controllers, and local app launchers are strictly limited to administrator validation roles.",
+    snippet: `POST /api/auth/login ➔ Public authentication
+GET /api/dashboard/stats ➔ Protected study telemetry logs
+GET /api/system/telemetry ➔ Restricted Admin CPU/RAM check
+POST /api/pdf/parse ➔ Protected PDF ingestion`,
   },
   {
     id: "roadmap-v2",
-    category: "Roadmap",
-    title: "AXIOM v2 & Future Capabilities",
-    purpose: "Details planned feature releases including voice interactions, WASM OCR parsing, and open-source UI libraries.",
+    category: "Development Notes",
+    title: "ReAct Agent Loop & Desktop Launcher Server",
+    purpose: "Explains how the AI executes shell scripts and opens Windows desktop apps from browser actions.",
     status: "In Progress",
-    body: "Phase 1 (Completed): Streaming multi-model chat UI with line-buffering error recovery. Phase 2 (In Progress): Local Web Speech voice input and browser Tesseract OCR document parsing. Phase 3 (Planned): Multi-agent memory synchronization via Ledger Go backend and public NPM release of AXIOM UI components.",
-    snippet: `v1.0 (Live): SSE AI Streaming + History Persistence
-v2.0 (Active): Voice Input + Document OCR Parsing
-v3.0 (Planned): Open-Source AXIOM UI Component Package`,
+    body: "The system features a Python-based OS Launcher app listening on port 5050. When the React client requests a local app start (VS Code, Chrome, Calculator), the Node backend forwards the command to the Tkinter server, which spawns background threads executing os.system commands, bridging browser sandbox isolation constraints.",
+    snippet: `Frontend client (Port 5173) ➔ Express backend (Port 5000) ➔ Python HTTP Launcher (Port 5050) ➔ os.system('start cmd')`,
   },
 ];
 
@@ -127,35 +118,36 @@ function Docs() {
   return (
     <PageShell>
       {/* Header */}
-      <section className="mx-auto max-w-7xl px-6 pt-8 pb-6">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 pt-8 pb-6">
         <Eyebrow>Developer Portal</Eyebrow>
         <h1 className="hero-title mt-6 text-[clamp(2.4rem,6vw,5.4rem)]">
           Technical Documentation <span className="text-shine">& Guides.</span>
         </h1>
-        <p className="mt-6 max-w-3xl text-base leading-relaxed text-muted-foreground">
-          Clear, structured documentation for developers, collaborators, and visitors exploring the architecture, API contracts, folder layouts, and deployment guides of <strong>AXIOM Studio</strong>.
+        <p className="mt-6 max-w-3xl text-sm sm:text-base leading-relaxed text-muted-foreground">
+          Clear, structured documentation for developers, collaborators, and visitors exploring the architecture, API contracts, folder layouts, and deployment guides of <strong>AXIOM Workspace</strong>.
         </p>
       </section>
 
       {/* Portal Layout: Search Sidebar + Docs Cards */}
-      <section className="mx-auto max-w-7xl px-6 py-8">
-        <div className="grid gap-8 lg:grid-cols-[280px_1fr]">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-8">
+        <div className="grid gap-6 lg:gap-8 lg:grid-cols-[280px_1fr]">
           {/* Filter Sidebar */}
-          <aside className="space-y-6 lg:sticky lg:top-24 self-start">
-            <div className="glass rounded-2xl p-5 space-y-4">
+          <aside className="space-y-4 lg:space-y-6 lg:sticky lg:top-24 self-start">
+            <div className="glass rounded-2xl p-4 lg:p-5 space-y-3 lg:space-y-4">
               <div className="eyebrow text-crimson-soft">Search Docs</div>
               <input
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search documentation..."
-                className="w-full rounded-xl bg-input border border-border px-3.5 py-2 text-xs outline-none focus:border-crimson/50 font-mono"
+                className="w-full rounded-xl bg-input border border-border px-3.5 py-2 text-xs outline-none focus:border-crimson/50 font-mono text-foreground"
               />
             </div>
 
-            <div className="glass rounded-2xl p-5 space-y-3">
-              <div className="eyebrow text-foreground mb-1">Categories</div>
-              <nav className="space-y-1">
+            <div className="glass rounded-2xl p-4 lg:p-5 space-y-3">
+              <div className="eyebrow text-foreground mb-1 lg:mb-2">Categories</div>
+              {/* Desktop view */}
+              <nav className="hidden lg:block space-y-1">
                 {categories.map((cat) => (
                   <button
                     key={cat}
@@ -170,6 +162,22 @@ function Docs() {
                   </button>
                 ))}
               </nav>
+              {/* Mobile/Tablet view: Horizontal scrollable tags */}
+              <div className="flex lg:hidden overflow-x-auto gap-2 pb-2 -mx-1 px-1 scrollbar-none">
+                {categories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCat(cat)}
+                    className={`shrink-0 rounded-full px-3.5 py-1.5 text-xs font-medium transition ${
+                      selectedCat === cat
+                        ? "glass-red text-foreground font-semibold"
+                        : "border border-border bg-secondary/80 text-muted-foreground"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
             </div>
           </aside>
 
@@ -222,7 +230,7 @@ function Docs() {
       </section>
 
       {/* CTA */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-16">
         <div className="glass-red rounded-3xl p-10 text-center">
           <Eyebrow>Developer Support</Eyebrow>
           <h2 className="hero-title mt-4 text-3xl md:text-4xl">Have technical questions or feedback?</h2>

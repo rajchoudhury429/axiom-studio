@@ -10,7 +10,7 @@ export const Route = createFileRoute("/research")({
       {
         name: "description",
         content:
-          "Engineering research notes, experiments, and architectural investigations conducted at AXIOM Studio.",
+          "Engineering research notes, experiments, and architectural investigations conducted at AXIOM Workspace.",
       },
       { name: "keywords", content: DEFAULT_KEYWORDS },
       { name: "robots", content: "index, follow" },

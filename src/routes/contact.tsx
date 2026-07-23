@@ -7,7 +7,7 @@ import { DEFAULT_KEYWORDS } from "@/lib/seo";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Raj Choudhury & AXIOM Studio" },
+      { title: "Contact — Raj Choudhury & AXIOM Workspace" },
       {
         name: "description",
         content:
@@ -15,11 +15,11 @@ export const Route = createFileRoute("/contact")({
       },
       { name: "keywords", content: DEFAULT_KEYWORDS },
       { name: "robots", content: "index, follow" },
-      { property: "og:title", content: "Contact — Raj Choudhury & AXIOM Studio" },
+      { property: "og:title", content: "Contact — Raj Choudhury & AXIOM Workspace" },
       {
         property: "og:description",
         content:
-          "Open a communication channel with AXIOM Studio for technical engagements and software projects.",
+          "Open a communication channel with AXIOM Workspace for technical engagements and software projects.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://axiom.studio/contact" },
@@ -317,7 +317,7 @@ function Contact() {
 
           <div className="grid gap-3 sm:grid-cols-2">
             {[
-              ["Email", "hello@axiom.studio"],
+              ["Email", "rajchoudhury429@gmail.com"],
               ["GitHub", "github.com/axiom-studio"],
               ["LinkedIn", "linkedin.com/company/axiom"],
               ["Instagram", "@axiom.studio"],
