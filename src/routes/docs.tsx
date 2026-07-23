@@ -118,7 +118,7 @@ function Docs() {
   return (
     <PageShell>
       {/* Header */}
-      <section className="mx-auto max-w-7xl px-3 sm:px-6 pt-6 sm:pt-8 pb-4 sm:pb-6">
+      <section className="mx-auto max-w-7xl px-3 sm:px-6 pt-6 sm:pt-8 pb-4 sm:pb-6 w-full overflow-hidden">
         <Eyebrow>Developer Portal</Eyebrow>
         <h1 className="hero-title mt-4 sm:mt-6 text-[clamp(1.8rem,5.5vw,3rem)] md:text-[clamp(2.4rem,6vw,5.4rem)]">
           Technical Documentation <span className="text-shine">& Guides.</span>
@@ -129,11 +129,11 @@ function Docs() {
       </section>
 
       {/* Portal Layout: Search Sidebar + Docs Cards */}
-      <section className="mx-auto max-w-7xl px-3 sm:px-6 py-6 sm:py-8">
-        <div className="grid gap-6 lg:gap-8 lg:grid-cols-[280px_1fr]">
+      <section className="mx-auto max-w-7xl px-3 sm:px-6 py-6 sm:py-8 w-full overflow-hidden">
+        <div className="grid gap-6 lg:gap-8 lg:grid-cols-[280px_1fr] w-full min-w-0">
           {/* Filter Sidebar */}
-          <aside className="space-y-4 lg:space-y-6 lg:sticky lg:top-24 self-start">
-            <div className="glass rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-5 space-y-2.5 sm:space-y-3 lg:space-y-4">
+          <aside className="space-y-4 lg:space-y-6 lg:sticky lg:top-24 self-start w-full min-w-0">
+            <div className="glass rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-5 space-y-2.5 sm:space-y-3 lg:space-y-4 w-full">
               <div className="eyebrow text-crimson-soft">Search Docs</div>
               <input
                 type="text"
@@ -144,7 +144,7 @@ function Docs() {
               />
             </div>
 
-            <div className="glass rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-5 space-y-2.5 sm:space-y-3">
+            <div className="glass rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-5 space-y-2.5 sm:space-y-3 w-full">
               <div className="eyebrow text-foreground mb-1 lg:mb-2 text-[10px] sm:text-xs">Categories</div>
               {/* Desktop view */}
               <nav className="hidden lg:block space-y-1">
@@ -163,7 +163,7 @@ function Docs() {
                 ))}
               </nav>
               {/* Mobile/Tablet view: Horizontal scrollable tags */}
-              <div className="flex lg:hidden overflow-x-auto gap-2 pb-1 -mx-0.5 px-0.5 scrollbar-none">
+              <div className="flex lg:hidden overflow-x-auto gap-2 pb-1 -mx-0.5 px-0.5 scrollbar-none w-full max-w-full">
                 {categories.map((cat) => (
                   <button
                     key={cat}
@@ -182,9 +182,9 @@ function Docs() {
           </aside>
 
           {/* Docs Entries */}
-          <div className="space-y-6 md:space-y-8 min-w-0">
+          <div className="space-y-6 md:space-y-8 min-w-0 w-full">
             {filtered.map((doc) => (
-              <div key={doc.id} className="glass rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 hover:red-glow transition space-y-3 sm:space-y-4 min-w-0" id={doc.id}>
+              <div key={doc.id} className="glass rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 hover:red-glow transition space-y-3 sm:space-y-4 min-w-0 w-full overflow-hidden" id={doc.id}>
                 <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 pb-3">
                   <div className="flex items-center gap-3">
                     <span className="eyebrow text-crimson-soft text-[10px] sm:text-xs">{doc.category}</span>
@@ -213,15 +213,15 @@ function Docs() {
                   {doc.body}
                 </p>
 
-                <div className="rounded-lg sm:rounded-xl border border-border bg-input p-3 sm:p-4 font-mono text-[10px] sm:text-[11px] text-muted-foreground overflow-x-auto">
+                <div className="rounded-lg sm:rounded-xl border border-border bg-input p-3 sm:p-4 font-mono text-[10px] sm:text-[11px] text-muted-foreground w-full overflow-hidden">
                   <div className="text-crimson-soft mb-1">// Code / Command Reference</div>
-                  <pre className="whitespace-pre font-mono text-[10px] sm:text-[11px] text-foreground scrollbar-thin scrollbar-thumb-crimson/30 scrollbar-track-transparent">{doc.snippet}</pre>
+                  <pre className="whitespace-pre-wrap break-words font-mono text-[10px] sm:text-[11px] text-foreground max-w-full overflow-hidden">{doc.snippet}</pre>
                 </div>
               </div>
             ))}
 
             {filtered.length === 0 && (
-              <div className="glass rounded-2xl sm:rounded-3xl p-8 sm:p-12 text-center text-xs sm:text-sm text-muted-foreground">
+              <div className="glass rounded-2xl sm:rounded-3xl p-8 sm:p-12 text-center text-xs sm:text-sm text-muted-foreground w-full">
                 No documentation entries found matching "{query}".
               </div>
             )}
@@ -230,8 +230,8 @@ function Docs() {
       </section>
 
       {/* CTA */}
-      <section className="mx-auto max-w-7xl px-3 sm:px-6 py-8 sm:py-16">
-        <div className="glass-red rounded-2xl sm:rounded-3xl p-6 sm:p-10 text-center">
+      <section className="mx-auto max-w-7xl px-3 sm:px-6 py-8 sm:py-16 w-full overflow-hidden">
+        <div className="glass-red rounded-2xl sm:rounded-3xl p-6 sm:p-10 text-center w-full overflow-hidden">
           <Eyebrow>Developer Support</Eyebrow>
           <h2 className="hero-title mt-3 sm:mt-4 text-xl sm:text-2xl md:text-4xl leading-tight">Have technical questions or feedback?</h2>
           <div className="mt-4 sm:mt-6 flex flex-wrap justify-center gap-3 sm:gap-4">
