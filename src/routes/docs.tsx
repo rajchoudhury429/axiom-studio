@@ -118,34 +118,34 @@ function Docs() {
   return (
     <PageShell>
       {/* Header */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 pt-8 pb-6">
+      <section className="mx-auto max-w-7xl px-3 sm:px-6 pt-6 sm:pt-8 pb-4 sm:pb-6">
         <Eyebrow>Developer Portal</Eyebrow>
-        <h1 className="hero-title mt-6 text-[clamp(2.4rem,6vw,5.4rem)]">
+        <h1 className="hero-title mt-4 sm:mt-6 text-[clamp(1.8rem,5.5vw,3rem)] md:text-[clamp(2.4rem,6vw,5.4rem)]">
           Technical Documentation <span className="text-shine">& Guides.</span>
         </h1>
-        <p className="mt-6 max-w-3xl text-sm sm:text-base leading-relaxed text-muted-foreground">
+        <p className="mt-4 sm:mt-6 max-w-3xl text-xs sm:text-sm md:text-base leading-relaxed text-muted-foreground">
           Clear, structured documentation for developers, collaborators, and visitors exploring the architecture, API contracts, folder layouts, and deployment guides of <strong>AXIOM Workspace</strong>.
         </p>
       </section>
 
       {/* Portal Layout: Search Sidebar + Docs Cards */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-8">
+      <section className="mx-auto max-w-7xl px-3 sm:px-6 py-6 sm:py-8">
         <div className="grid gap-6 lg:gap-8 lg:grid-cols-[280px_1fr]">
           {/* Filter Sidebar */}
           <aside className="space-y-4 lg:space-y-6 lg:sticky lg:top-24 self-start">
-            <div className="glass rounded-2xl p-4 lg:p-5 space-y-3 lg:space-y-4">
+            <div className="glass rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-5 space-y-2.5 sm:space-y-3 lg:space-y-4">
               <div className="eyebrow text-crimson-soft">Search Docs</div>
               <input
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search documentation..."
-                className="w-full rounded-xl bg-input border border-border px-3.5 py-2 text-xs outline-none focus:border-crimson/50 font-mono text-foreground"
+                className="w-full rounded-lg sm:rounded-xl bg-input border border-border px-3 py-1.5 sm:py-2 text-xs outline-none focus:border-crimson/50 font-mono text-foreground"
               />
             </div>
 
-            <div className="glass rounded-2xl p-4 lg:p-5 space-y-3">
-              <div className="eyebrow text-foreground mb-1 lg:mb-2">Categories</div>
+            <div className="glass rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-5 space-y-2.5 sm:space-y-3">
+              <div className="eyebrow text-foreground mb-1 lg:mb-2 text-[10px] sm:text-xs">Categories</div>
               {/* Desktop view */}
               <nav className="hidden lg:block space-y-1">
                 {categories.map((cat) => (
@@ -163,12 +163,12 @@ function Docs() {
                 ))}
               </nav>
               {/* Mobile/Tablet view: Horizontal scrollable tags */}
-              <div className="flex lg:hidden overflow-x-auto gap-2 pb-2 -mx-1 px-1 scrollbar-none">
+              <div className="flex lg:hidden overflow-x-auto gap-2 pb-1 -mx-0.5 px-0.5 scrollbar-none">
                 {categories.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => setSelectedCat(cat)}
-                    className={`shrink-0 rounded-full px-3.5 py-1.5 text-xs font-medium transition ${
+                    className={`shrink-0 rounded-full px-3.5 py-1.5 text-[10px] sm:text-xs font-medium transition ${
                       selectedCat === cat
                         ? "glass-red text-foreground font-semibold"
                         : "border border-border bg-secondary/80 text-muted-foreground"
@@ -182,16 +182,16 @@ function Docs() {
           </aside>
 
           {/* Docs Entries */}
-          <div className="space-y-8">
+          <div className="space-y-6 md:space-y-8 min-w-0">
             {filtered.map((doc) => (
-              <div key={doc.id} className="glass rounded-3xl p-6 md:p-8 hover:red-glow transition space-y-4" id={doc.id}>
+              <div key={doc.id} className="glass rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 hover:red-glow transition space-y-3 sm:space-y-4 min-w-0" id={doc.id}>
                 <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 pb-3">
                   <div className="flex items-center gap-3">
-                    <span className="eyebrow text-crimson-soft">{doc.category}</span>
-                    <span className="font-mono text-[10px] text-muted-foreground">#{doc.id}</span>
+                    <span className="eyebrow text-crimson-soft text-[10px] sm:text-xs">{doc.category}</span>
+                    <span className="font-mono text-[9px] sm:text-[10px] text-muted-foreground">#{doc.id}</span>
                   </div>
                   <span
-                    className={`text-[10px] font-mono uppercase tracking-widest px-2.5 py-0.5 rounded ${
+                    className={`text-[9px] sm:text-[10px] font-mono uppercase tracking-widest px-2.5 py-0.5 rounded ${
                       doc.status === "Active & Stable"
                         ? "bg-emerald-500/15 text-emerald-400"
                         : "bg-amber-500/15 text-amber-300"
@@ -201,27 +201,27 @@ function Docs() {
                   </span>
                 </div>
 
-                <h2 className="font-display text-2xl font-semibold text-foreground">
+                <h2 className="font-display text-lg sm:text-xl md:text-2xl font-semibold text-foreground leading-tight">
                   {doc.title}
                 </h2>
 
-                <p className="text-xs leading-relaxed text-foreground font-medium">
+                <p className="text-[11px] sm:text-xs leading-relaxed text-foreground font-medium">
                   <strong>Purpose: </strong> {doc.purpose}
                 </p>
 
-                <p className="text-xs leading-relaxed text-muted-foreground">
+                <p className="text-[11px] sm:text-xs leading-relaxed text-muted-foreground">
                   {doc.body}
                 </p>
 
-                <div className="rounded-xl border border-border bg-input p-4 font-mono text-[11px] text-muted-foreground overflow-x-auto">
+                <div className="rounded-lg sm:rounded-xl border border-border bg-input p-3 sm:p-4 font-mono text-[10px] sm:text-[11px] text-muted-foreground overflow-x-auto">
                   <div className="text-crimson-soft mb-1">// Code / Command Reference</div>
-                  <pre className="whitespace-pre text-foreground">{doc.snippet}</pre>
+                  <pre className="whitespace-pre font-mono text-[10px] sm:text-[11px] text-foreground scrollbar-thin scrollbar-thumb-crimson/30 scrollbar-track-transparent">{doc.snippet}</pre>
                 </div>
               </div>
             ))}
 
             {filtered.length === 0 && (
-              <div className="glass rounded-3xl p-12 text-center text-sm text-muted-foreground">
+              <div className="glass rounded-2xl sm:rounded-3xl p-8 sm:p-12 text-center text-xs sm:text-sm text-muted-foreground">
                 No documentation entries found matching "{query}".
               </div>
             )}
@@ -230,15 +230,15 @@ function Docs() {
       </section>
 
       {/* CTA */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-16">
-        <div className="glass-red rounded-3xl p-10 text-center">
+      <section className="mx-auto max-w-7xl px-3 sm:px-6 py-8 sm:py-16">
+        <div className="glass-red rounded-2xl sm:rounded-3xl p-6 sm:p-10 text-center">
           <Eyebrow>Developer Support</Eyebrow>
-          <h2 className="hero-title mt-4 text-3xl md:text-4xl">Have technical questions or feedback?</h2>
-          <div className="mt-6 flex flex-wrap justify-center gap-4">
-            <Link to="/contact" className="rounded-lg glass-red px-6 py-2.5 text-sm font-medium">
+          <h2 className="hero-title mt-3 sm:mt-4 text-xl sm:text-2xl md:text-4xl leading-tight">Have technical questions or feedback?</h2>
+          <div className="mt-4 sm:mt-6 flex flex-wrap justify-center gap-3 sm:gap-4">
+            <Link to="/contact" className="rounded-lg glass-red px-5 sm:px-6 py-2.5 text-xs sm:text-sm font-medium">
               Contact Developers →
             </Link>
-            <Link to="/projects" className="rounded-lg border border-border bg-secondary/80 px-6 py-2.5 text-sm font-medium hover:bg-secondary transition">
+            <Link to="/projects" className="rounded-lg border border-border bg-secondary/80 px-5 sm:px-6 py-2.5 text-xs sm:text-sm font-medium hover:bg-secondary transition">
               Explore Projects
             </Link>
           </div>
